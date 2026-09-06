@@ -1,0 +1,288 @@
+/* =========================================
+   SAFE & SECURE PAGE
+========================================= */
+
+.safe-secure-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(0, 200, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(130, 70, 255, 0.14),
+      transparent 35%
+    ),
+    #080b14;
+}
+
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.security-card {
+  width: min(650px, 92vw);
+
+  padding: 45px;
+
+  text-align: center;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border: 1px solid rgba(98, 230, 255, 0.30);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(0, 200, 255, 0.10);
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.security-icon {
+  width: 80px;
+  height: 80px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 22px;
+
+  font-size: 38px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(0, 200, 255, 0.18),
+      rgba(100, 60, 255, 0.18)
+    );
+
+  border: 1px solid rgba(98, 230, 255, 0.35);
+
+  box-shadow:
+    0 0 30px rgba(0, 200, 255, 0.18);
+
+  animation: securityFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.security-badge {
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  font-size: 11px;
+  letter-spacing: 2px;
+
+  color: #62e6ff;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.security-card h1 {
+  margin: 0;
+
+  font-size: clamp(32px, 6vw, 48px);
+
+  color: white;
+}
+
+.security-card h1 span {
+  color: #62e6ff;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.security-intro {
+  max-width: 500px;
+
+  margin: 15px auto 35px;
+
+  line-height: 1.7;
+
+  color: #9aaac0;
+}
+
+
+/* =========================================
+   SECURITY FEATURES
+========================================= */
+
+.security-features {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+
+  text-align: left;
+}
+
+
+.security-item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 15px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+.security-item:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(98, 230, 255, 0.25);
+}
+
+
+.security-item > div {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: rgba(98, 230, 255, 0.10);
+
+  font-size: 20px;
+}
+
+
+.security-item h3 {
+  margin: 0 0 5px;
+
+  color: white;
+
+  font-size: 16px;
+}
+
+
+.security-item p {
+  margin: 0;
+
+  color: #8998ad;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.security-back-btn {
+  margin-top: 30px;
+
+  padding: 12px 24px;
+
+  border: 1px solid rgba(98, 230, 255, 0.30);
+
+  border-radius: 12px;
+
+  background: rgba(98, 230, 255, 0.08);
+
+  color: #62e6ff;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.security-back-btn:hover {
+  transform: translateY(-2px);
+
+  background: rgba(98, 230, 255, 0.15);
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes securityFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .safe-secure-page {
+    padding: 20px 12px;
+  }
+
+  .security-card {
+    padding: 30px 20px;
+  }
+
+  .security-item {
+    padding: 15px;
+  }
+
+}

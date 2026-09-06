@@ -1,0 +1,192 @@
+/* =========================================
+   HOMEFIX FLOATING CHATBOT
+========================================= */
+
+.chatbot-button {
+  position: fixed;
+
+  right: 32px;
+  bottom: 32px;
+
+  width: 64px;
+  height: 64px;
+
+  border: 1px solid rgba(80, 220, 255, 0.55);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  /* Glass background */
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(100, 240, 255, 0.95),
+      rgba(30, 100, 255, 0.75) 45%,
+      rgba(100, 40, 255, 0.85)
+    );
+
+  /* 3D depth */
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(0, 180, 255, 0.35),
+    0 0 45px rgba(100, 60, 255, 0.25),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.35),
+    inset -4px -5px 10px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(12px);
+
+  transform: perspective(500px) translateZ(0);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =========================================
+   CHAT ICON
+========================================= */
+
+.chatbot-icon {
+  font-size: 25px;
+
+  color: white;
+
+  filter:
+    drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================
+   OUTER GLOW
+========================================= */
+
+.chatbot-button::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -7px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(90, 210, 255, 0.25);
+
+  box-shadow:
+    0 0 15px rgba(0, 200, 255, 0.2),
+    0 0 30px rgba(100, 60, 255, 0.15);
+
+  animation: chatbotPulse 3s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   SMALL LIGHT REFLECTION
+========================================= */
+
+.chatbot-button::after {
+  content: "";
+
+  position: absolute;
+
+  width: 22px;
+  height: 10px;
+
+  top: 9px;
+  left: 13px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.3);
+
+  filter: blur(5px);
+
+  transform: rotate(-25deg);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.chatbot-button:hover {
+  transform:
+    perspective(500px)
+    translateY(-6px)
+    rotateX(5deg)
+    scale(1.08);
+
+  box-shadow:
+    0 15px 25px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(0, 200, 255, 0.5),
+    0 0 55px rgba(110, 60, 255, 0.4),
+    inset 3px 3px 10px rgba(255, 255, 255, 0.4),
+    inset -5px -6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================
+   CLICK
+========================================= */
+
+.chatbot-button:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================
+   PULSE ANIMATION
+========================================= */
+
+@keyframes chatbotPulse {
+
+  0% {
+    transform: scale(0.96);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(0.96);
+    opacity: 0.45;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .chatbot-button {
+    width: 54px;
+    height: 54px;
+
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .chatbot-icon {
+    font-size: 21px;
+  }
+
+}

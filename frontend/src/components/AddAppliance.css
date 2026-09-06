@@ -1,0 +1,288 @@
+.add-appliance-page {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(0, 190, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(110, 70, 255, 0.14),
+      transparent 35%
+    ),
+    #060914;
+}
+
+
+/* MAIN CARD */
+
+.add-appliance-card {
+  width: 100%;
+  max-width: 520px;
+
+  padding: 35px;
+
+  box-sizing: border-box;
+
+  border-radius: 25px;
+
+  border: 1px solid rgba(40, 210, 255, 0.45);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 50, 65, 0.72),
+      rgba(25, 20, 55, 0.70)
+    );
+
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 0 45px rgba(0, 170, 255, 0.08);
+}
+
+
+/* ICON */
+
+.add-appliance-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+
+  border-radius: 15px;
+
+  font-size: 25px;
+
+  background: rgba(20, 40, 70, 0.8);
+
+  border: 1px solid rgba(0, 200, 255, 0.45);
+}
+
+
+/* BADGE */
+
+.add-appliance-badge {
+  display: block;
+
+  width: fit-content;
+
+  margin: 0 auto 15px;
+
+  padding: 6px 13px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(0, 210, 255, 0.4);
+
+  color: #25d9ff;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+
+/* TITLE */
+
+.add-appliance-card h1 {
+  margin: 0;
+
+  text-align: center;
+
+  color: white;
+
+  font-size: 38px;
+}
+
+.add-appliance-card h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      #1ddcff,
+      #8668ff
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* INTRO */
+
+.add-appliance-intro {
+  text-align: center;
+
+  color: #aab5ca;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin: 12px auto 30px;
+
+  max-width: 400px;
+}
+
+
+/* FORM */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #dce6f5;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.form-group input,
+.form-group select {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(120, 145, 190, 0.35);
+
+  outline: none;
+
+  background: rgba(8, 15, 30, 0.75);
+
+  color: white;
+
+  font-size: 13px;
+
+  transition: 0.25s;
+}
+
+
+.form-group input::placeholder {
+  color: #68758c;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+  border-color: #20d9ff;
+
+  box-shadow:
+    0 0 15px rgba(0, 200, 255, 0.12);
+}
+
+
+.form-group select option {
+  background: #10172a;
+  color: white;
+}
+
+
+/* BUTTONS */
+
+.add-appliance-buttons {
+
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+
+.add-appliance-buttons button {
+
+  flex: 1;
+
+  padding: 13px 15px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-size: 12px;
+
+  transition: 0.3s;
+}
+
+
+.save-appliance-btn {
+
+  border: none;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      90deg,
+      #168cff,
+      #684cff
+    );
+
+  box-shadow:
+    0 8px 20px rgba(50, 100, 255, 0.20);
+}
+
+
+.back-appliance-btn {
+
+  color: white;
+
+  background: rgba(20, 30, 55, 0.7);
+
+  border: 1px solid rgba(110, 140, 190, 0.4);
+}
+
+
+.add-appliance-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .add-appliance-card {
+    padding: 25px 20px;
+  }
+
+  .add-appliance-card h1 {
+    font-size: 30px;
+  }
+
+  .add-appliance-buttons {
+    flex-direction: column;
+  }
+
+}

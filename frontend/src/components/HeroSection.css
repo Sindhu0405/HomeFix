@@ -1,0 +1,357 @@
+.hero-section {
+
+  min-height: 450px;
+
+  display: grid;
+
+  grid-template-columns: 0.9fr 1.1fr;
+
+  align-items: center;
+
+  gap: 30px;
+
+  padding: 30px 25px 25px;
+
+  box-sizing: border-box;
+}
+
+
+/* LEFT */
+
+.hero-content {
+  padding-left: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+
+.hero-badge {
+
+  display: inline-block;
+
+  padding: 8px 16px;
+
+  margin-bottom: 20px;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(0, 210, 255, 0.45);
+
+  background: rgba(0, 180, 255, 0.07);
+
+  color: #26d9ff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+
+.hero-content h1 {
+
+  margin: 0;
+
+  color: white;
+
+  font-size: clamp(38px, 4vw, 62px);
+
+  line-height: 1.05;
+
+  letter-spacing: -2px;
+}
+
+
+.hero-content h1 span {
+
+  background:
+    linear-gradient(
+      90deg,
+      #19d9ff,
+      #8c6cff
+    );
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+
+.hero-content p {
+
+  max-width: 500px;
+
+  margin: 25px 0;
+
+  color: #aeb9ce;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* BUTTONS */
+
+.hero-buttons {
+
+  display: flex;
+
+  gap: 15px;
+}
+
+
+.hero-buttons button {
+
+  padding: 14px 23px;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+
+.hero-primary-btn {
+
+  border: none;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      90deg,
+      #168cff,
+      #684cff
+    );
+
+  box-shadow:
+    0 8px 25px rgba(40, 100, 255, 0.25);
+}
+
+
+.hero-secondary-btn {
+
+  color: white;
+
+  background: rgba(20, 30, 55, 0.65);
+
+  border: 1px solid rgba(120, 150, 200, 0.45);
+}
+
+
+.hero-buttons button:hover {
+
+  transform: translateY(-3px);
+}
+
+
+/* VISUAL */
+
+.hero-visual {
+
+  height: 430px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* ORBIT */
+
+.appliance-orbit {
+
+  width: 430px;
+  height: 300px;
+
+  position: absolute;
+
+  border: 1px solid rgba(0, 180, 255, 0.25);
+
+  border-radius: 50%;
+
+  transform: rotate(-12deg);
+
+  box-shadow:
+    0 0 30px rgba(0, 170, 255, 0.12);
+}
+
+
+/* CENTER */
+
+.homefix-center {
+
+  width: 170px;
+  height: 170px;
+
+  border-radius: 35px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  z-index: 3;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 50, 80, 0.9),
+      rgba(25, 20, 60, 0.9)
+    );
+
+  border: 1px solid rgba(30, 190, 255, 0.6);
+
+  box-shadow:
+    0 0 45px rgba(0, 180, 255, 0.25);
+}
+
+
+.homefix-icon {
+
+  font-size: 45px;
+
+  margin-bottom: 8px;
+}
+
+
+.homefix-center strong {
+
+  color: white;
+
+  font-size: 18px;
+}
+
+
+.homefix-center small {
+
+  color: #24d8ff;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+}
+
+
+/* MINI APPLIANCES */
+
+.mini-appliance {
+
+  position: absolute;
+
+  min-width: 95px;
+
+  padding: 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+
+  border-radius: 14px;
+
+  background: rgba(18, 25, 48, 0.82);
+
+  border: 1px solid rgba(80, 140, 220, 0.3);
+
+  backdrop-filter: blur(10px);
+
+  color: #dce6f7;
+
+  font-size: 10px;
+
+  box-shadow:
+    0 0 20px rgba(0, 120, 255, 0.08);
+}
+
+
+.mini-icon {
+  font-size: 25px;
+}
+
+
+/* POSITIONS */
+
+.refrigerator {
+  top: 25px;
+  left: 35px;
+}
+
+.ac {
+  top: 0;
+  right: 55px;
+}
+
+.tv {
+  right: 5px;
+  top: 145px;
+}
+
+.washing {
+  bottom: 25px;
+  left: 55px;
+}
+
+.microwave {
+  bottom: 35px;
+  right: 60px;
+}
+
+.fan {
+  left: 5px;
+  top: 170px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .hero-visual {
+    transform: scale(0.75);
+    margin: -40px;
+  }
+
+  .hero-content h1 {
+    font-size: 38px;
+  }
+
+}
