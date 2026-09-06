@@ -1,42 +1,58 @@
-# HomeFix — AI Appliance Troubleshooting & Maintenance Platform
+# HomeFix – Smart Appliance Care Platform
 
-A full-stack portfolio project for diagnosing common appliance problems, tracking repairs, warranties, and maintenance.
+HomeFix is a full-stack web application designed to help users manage
+their household appliances and get smart troubleshooting and repair
+guidance in one place.
 
-## Stack
-- Frontend: React + Vite (planned in Phase 2)
-- Backend: FastAPI + SQLAlchemy
-- Database: PostgreSQL (SQLite for local starter)
-- AI/NLP: planned in Phase 4
-- Auth: JWT planned
-- Docker/AWS: planned
+## 🚀 Features
 
-## Current starter
-The included backend is a clean FastAPI foundation with:
-- health endpoint
-- appliance CRUD
-- diagnosis endpoint using a simple rule-based engine
-- SQLAlchemy models
-- Pydantic schemas
-- SQLite local database
+- 🔐 User Login with Email / Mobile OTP
+- 🏠 Home Dashboard
+- ➕ Add and Manage Appliances
+- 🔧 My Appliances
+- 🩺 Smart Appliance Diagnosis
+- 📋 Diagnosis Results
+- 🛠️ Repair Guidance
+- 📜 Diagnosis History
+- 🔒 Safe & Secure Information
+- 💬 HomeFix Assistant Chatbot
+- 📱 Responsive and user-friendly interface
 
-## Run backend
-```bash
-cd backend
-python -m venv .venv
-# Windows PowerShell:
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
+## 🛠️ Technology Stack
 
-Open http://127.0.0.1:8000/docs
+### Frontend
 
-## Roadmap
-1. Backend foundation
-2. React dashboard
-3. Authentication
-4. PostgreSQL migration
-5. Appliance/warranty/repair modules
-6. AI troubleshooting and document/manual analysis
-7. Cost-based repair vs replace engine
-8. Testing, Docker and AWS deployment
+- React
+- Vite
+- JavaScript
+- HTML
+- CSS
+- Axios
+
+### Backend
+
+- Python
+- FastAPI
+- REST APIs
+- SQLite
+- SQLAlchemy
+
+## 🏗️ Application Architecture
+
+```text
+HomeFix
+│
+├── Frontend
+│   ├── React
+│   ├── Vite
+│   ├── Components
+│   └── API Integration
+│
+├── Backend
+│   ├── FastAPI
+│   ├── Authentication APIs
+│   ├── Appliance APIs
+│   └── Diagnosis APIs
+│
+└── Database
+    └── SQLite
