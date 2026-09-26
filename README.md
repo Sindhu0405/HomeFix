@@ -1,58 +1,58 @@
-# HomeFix – Smart Appliance Care Platform
+# HomeFix – Smart Appliance Care & Diagnosis System
 
-HomeFix is a full-stack web application designed to help users manage
-their household appliances and get smart troubleshooting and repair
-guidance in one place.
+HomeFix is a full-stack web application designed to help users manage their home appliances and receive rule-based troubleshooting and repair guidance based on reported appliance problems.
 
 ## 🚀 Features
 
-- 🔐 User Login with Email / Mobile OTP
-- 🏠 Home Dashboard
-- ➕ Add and Manage Appliances
-- 🔧 My Appliances
-- 🩺 Smart Appliance Diagnosis
-- 📋 Diagnosis Results
-- 🛠️ Repair Guidance
-- 📜 Diagnosis History
-- 🔒 Safe & Secure Information
-- 💬 HomeFix Assistant Chatbot
-- 📱 Responsive and user-friendly interface
+- User registration and login
+- User authentication
+- Add and manage home appliances
+- View appliance details
+- Select an appliance for diagnosis
+- Report appliance problems
+- Rule-based appliance diagnosis
+- Troubleshooting and repair guidance
+- Diagnosis results
+- Diagnosis history
+- HomeFix assistant/chatbot interface
+- REST API based frontend-backend communication
 
-## 🛠️ Technology Stack
+## 🛠️ Tech Stack
 
 ### Frontend
-
 - React
 - Vite
 - JavaScript
+- Axios
 - HTML
 - CSS
-- Axios
 
 ### Backend
-
 - Python
 - FastAPI
+- Pydantic
+- SQLAlchemy ORM
+- Uvicorn
 - REST APIs
+
+### Database
 - SQLite
 - SQLAlchemy
 
-## 🏗️ Application Architecture
+### Development Tools
+- Git
+- GitHub
+- VS Code
+
+## 🏗️ System Architecture
 
 ```text
-HomeFix
-│
-├── Frontend
-│   ├── React
-│   ├── Vite
-│   ├── Components
-│   └── API Integration
-│
-├── Backend
-│   ├── FastAPI
-│   ├── Authentication APIs
-│   ├── Appliance APIs
-│   └── Diagnosis APIs
-│
-└── Database
-    └── SQLite
+React Frontend
+      ↓
+    Axios
+      ↓
+FastAPI REST API
+      ↓
+SQLAlchemy ORM
+      ↓
+SQLite Database
