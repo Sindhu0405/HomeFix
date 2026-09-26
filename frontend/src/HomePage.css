@@ -153,7 +153,7 @@
 
 
 /* ==========================================
-   LOGIN / REGISTER / CHATBOT
+   LOGIN / REGISTER
 ========================================== */
 
 .welcome-actions {
@@ -225,38 +225,6 @@
   transform: translateY(-2px);
 
   border-color: #a56aff;
-}
-
-
-/* CHATBOT ICON */
-
-.welcome-chatbot {
-  width: 44px;
-
-  padding: 0 !important;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border: 1px solid
-    rgba(0, 220, 255, 0.55);
-
-  background:
-    rgba(10, 30, 55, 0.8);
-
-  font-size: 20px !important;
-}
-
-
-.welcome-chatbot:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 0 18px
-    rgba(0, 210, 255, 0.3);
 }
 
 
@@ -714,8 +682,8 @@
 .welcome-chatbot-icon {
   position: absolute;
 
-  left: 20px;
-  bottom: 18px;
+  right: 15px;
+  bottom: 15px;
 
   width: 42px;
   height: 42px;

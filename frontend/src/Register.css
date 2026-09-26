@@ -1,30 +1,27 @@
 /* ==========================================
-   LOGIN PAGE
+   REGISTER PAGE
 ========================================== */
 
-.login-page {
+.register-page {
   min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
   background:
     radial-gradient(circle at top, #10263a 0%, #060b16 45%, #08051a 100%);
-
   color: white;
   font-family: Arial, sans-serif;
 }
 
 
 /* ==========================================
-   LOGIN CARD
+   REGISTER CARD
 ========================================== */
 
-.login-card {
+.register-card {
   width: 420px;
   padding: 38px 45px;
-
   border: 2px solid #008db5;
   border-radius: 28px;
 
@@ -44,7 +41,7 @@
    ICON
 ========================================== */
 
-.login-icon {
+.register-icon {
   width: 58px;
   height: 58px;
 
@@ -68,10 +65,11 @@
    BADGE
 ========================================== */
 
-.login-badge {
+.register-badge {
   display: inline-block;
 
   padding: 12px 18px;
+
   margin-bottom: 18px;
 
   border: 2px solid #008db5;
@@ -89,7 +87,7 @@
    TITLE
 ========================================== */
 
-.login-card h1 {
+.register-card h1 {
   margin: 0;
 
   font-size: 34px;
@@ -103,7 +101,7 @@
    INTRO
 ========================================== */
 
-.login-intro {
+.register-intro {
   margin: 4px 0 25px;
 
   font-size: 17px;
@@ -115,12 +113,12 @@
    FORM FIELD
 ========================================== */
 
-.login-field {
+.register-field {
   margin-bottom: 18px;
   text-align: left;
 }
 
-.login-field label {
+.register-field label {
   display: block;
 
   margin-bottom: 7px;
@@ -131,7 +129,7 @@
   font-weight: 600;
 }
 
-.login-field input {
+.register-field input {
   width: 100%;
   box-sizing: border-box;
 
@@ -150,11 +148,11 @@
   transition: 0.2s;
 }
 
-.login-field input::placeholder {
+.register-field input::placeholder {
   color: #8c96a5;
 }
 
-.login-field input:focus {
+.register-field input:focus {
   border-color: #00bfff;
 
   box-shadow:
@@ -163,13 +161,14 @@
 
 
 /* ==========================================
-   LOGIN BUTTON
+   CREATE ACCOUNT BUTTON
 ========================================== */
 
-.login-submit-btn {
+.register-submit-btn {
   width: 100%;
 
   padding: 12px;
+
   margin-top: 5px;
 
   border: none;
@@ -187,24 +186,24 @@
   transition: 0.2s;
 }
 
-.login-submit-btn:hover {
+.register-submit-btn:hover {
   background: #008db5;
 
   box-shadow:
     0 0 12px rgba(0, 191, 255, 0.25);
 }
 
-.login-submit-btn:disabled {
+.register-submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 
 /* ==========================================
-   REGISTER TEXT
+   LOGIN TEXT
 ========================================== */
 
-.login-register-text {
+.register-login-text {
   margin-top: 18px;
 
   color: white;
@@ -214,9 +213,9 @@
 }
 
 
-/* CREATE ACCOUNT BUTTON */
+/* LOGIN BUTTON */
 
-.login-register-btn {
+.register-login-btn {
   margin-left: 8px;
 
   padding: 5px 12px;
@@ -233,7 +232,7 @@
   cursor: pointer;
 }
 
-.login-register-btn:hover {
+.register-login-btn:hover {
   background: #008db5;
 }
 
@@ -242,7 +241,7 @@
    BACK BUTTON
 ========================================== */
 
-.login-back-btn {
+.register-back-btn {
   margin-top: 15px;
 
   padding: 7px 14px;
@@ -259,7 +258,7 @@
   cursor: pointer;
 }
 
-.login-back-btn:hover {
+.register-back-btn:hover {
   background: #008db5;
 }
 
@@ -270,18 +269,18 @@
 
 @media (max-width: 600px) {
 
-  .login-card {
+  .register-card {
     width: 85%;
     padding: 30px 25px;
   }
 
-  .login-card h1 {
+  .register-card h1 {
     font-size: 28px;
   }
 
 }
 /* ==========================================
-   PASSWORD FIELD
+   PASSWORD SHOW / HIDE
 ========================================== */
 
 .password-wrapper {
@@ -290,55 +289,18 @@
 }
 
 .password-wrapper input {
-  width: 100%;
-  box-sizing: border-box;
-
-  padding: 12px 45px 12px 14px;
-
-  border: 1px solid #718096;
-  border-radius: 7px;
-
-  background: #182231;
-  color: white;
-
-  font-size: 15px;
-
-  outline: none;
-
-  transition: 0.2s;
+  padding-right: 45px;
 }
-
-.password-wrapper input::placeholder {
-  color: #8c96a5;
-}
-
-.password-wrapper input:focus {
-  border-color: #00bfff;
-
-  box-shadow:
-    0 0 8px rgba(0, 191, 255, 0.25);
-}
-
-
-/* ==========================================
-   SHOW / HIDE PASSWORD BUTTON
-========================================== */
 
 .password-toggle {
   position: absolute;
 
-  right: 12px;
+  right: 10px;
   top: 50%;
 
   transform: translateY(-50%);
 
-  width: 30px;
-  height: 30px;
-
-  padding: 0;
-
   border: none;
-
   background: transparent;
 
   color: white;
@@ -347,11 +309,11 @@
 
   cursor: pointer;
 
+  padding: 4px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-
-  z-index: 2;
 }
 
 .password-toggle:hover {

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
-import "./Login.css";
+import "./Register.css";
 
-function Login({ setPage, onLoginSuccess }) {
+function Register({ setPage }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     if (!name.trim()) {
@@ -17,7 +17,7 @@ const [showPassword, setShowPassword] = useState(false);
     }
 
     if (!password.trim()) {
-      alert("Please enter your password.");
+      alert("Please enter a password.");
       return;
     }
 
@@ -25,34 +25,25 @@ const [showPassword, setShowPassword] = useState(false);
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/auth/login",
+        "http://127.0.0.1:8000/api/auth/register",
         {
           name: name.trim(),
           password: password
         }
       );
 
-      console.log("Login response:", response.data);
+      console.log("Register response:", response.data);
 
-      if (response.data.success) {
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userName", response.data.name);
+      alert("Account created successfully! Please login.");
 
-        alert(`Welcome back, ${response.data.name}!`);
-
-        if (onLoginSuccess) {
-          onLoginSuccess();
-        } else {
-          setPage("dashboard");
-        }
-      }
+      setPage("login");
 
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Register error:", error);
 
       alert(
         error.response?.data?.detail ||
-        "Unable to login. Please try again."
+        "Unable to create account. Please try again."
       );
 
     } finally {
@@ -61,33 +52,33 @@ const [showPassword, setShowPassword] = useState(false);
   };
 
   return (
-    <div className="login-page">
+    <div className="register-page">
 
-      <div className="login-card">
+      <div className="register-card">
 
         {/* HOME ICON */}
-        <div className="login-icon">
+        <div className="register-icon">
           🏠
         </div>
 
         {/* BADGE */}
-        <span className="login-badge">
+        <span className="register-badge">
           HOMEFIX SMART CARE
         </span>
 
         {/* TITLE */}
         <h1>
-          Welcome Back
+          Create Your Account
         </h1>
 
-        <p className="login-intro">
-          Login to continue to HomeFix
+        <p className="register-intro">
+          Create your HomeFix account to get started
         </p>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
 
           {/* NAME */}
-          <div className="login-field">
+          <div className="register-field">
             <label>Name</label>
 
             <input
@@ -102,7 +93,7 @@ const [showPassword, setShowPassword] = useState(false);
           <div className="password-wrapper">
   <input
     type={showPassword ? "text" : "password"}
-    placeholder="Enter your password"
+    placeholder="Create a password"
     value={password}
     onChange={(e) => setPassword(e.target.value)}
   />
@@ -116,34 +107,34 @@ const [showPassword, setShowPassword] = useState(false);
   </button>
 </div>
 
-          {/* LOGIN */}
+          {/* CREATE ACCOUNT */}
           <button
             type="submit"
-            className="login-submit-btn"
+            className="register-submit-btn"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Creating Account..." : "Create Account"}
           </button>
 
         </form>
 
-        {/* REGISTER */}
-        <p className="login-register-text">
-          Don't have an account?
+        {/* LOGIN */}
+        <p className="register-login-text">
+          Already have an account?
 
           <button
             type="button"
-            className="login-register-btn"
-            onClick={() => setPage("register")}
+            className="register-login-btn"
+            onClick={() => setPage("login")}
           >
-            Create Account
+            Login
           </button>
         </p>
 
         {/* BACK */}
         <button
           type="button"
-          className="login-back-btn"
+          className="register-back-btn"
           onClick={() => setPage("home")}
         >
           ← Back to Home
@@ -155,4 +146,4 @@ const [showPassword, setShowPassword] = useState(false);
   );
 }
 
-export default Login;
+export default Register;

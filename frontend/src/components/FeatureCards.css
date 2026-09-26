@@ -1,35 +1,38 @@
+/* =========================================
+   FEATURE SECTION
+========================================= */
+
 .feature-section {
-
   display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 22px;
-
-  margin-top: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
 }
 
 
-/* CARD */
+/* =========================================
+   CARD
+========================================= */
 
 .feature-card {
+  min-height: 35px;
+  height: 35px;
+   min-width: 0;
+width: 100%;
 
-  min-height: 145px;
 
   position: relative;
 
   display: flex;
-
   align-items: center;
 
-  gap: 25px;
+  gap: 5px;
 
-  padding: 25px;
+  padding: 4px 7px;
 
   box-sizing: border-box;
 
-  border-radius: 20px;
+  border-radius: 7px;
 
   border: 1px solid rgba(120, 130, 180, 0.30);
 
@@ -51,86 +54,102 @@
 }
 
 
-/* HOVER */
+/* =========================================
+   HOVER
+========================================= */
 
 .feature-card:hover {
-
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 
   border-color: rgba(0, 210, 255, 0.65);
 
   box-shadow:
-    0 10px 35px rgba(0, 180, 255, 0.10);
+    0 5px 15px rgba(0, 180, 255, 0.10);
 }
 
 
-/* ICON */
+/* =========================================
+   ICON
+========================================= */
 
 .feature-icon {
+  width: 22px;
+  height: 22px;
 
-  width: 58px;
-  height: 58px;
-
-  min-width: 58px;
+  min-width: 22px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  border-radius: 15px;
+  border-radius: 6px;
 
-  font-size: 27px;
+  font-size: 11px;
 
   background: rgba(20, 35, 65, 0.8);
 
   border: 1px solid rgba(60, 180, 255, 0.35);
+
+  box-sizing: border-box;
 }
 
 
-/* TEXT */
+/* =========================================
+   TEXT
+========================================= */
 
 .feature-content {
-  padding-right: 25px;
+  padding-right: 8px;
+
+  min-width: 0;
 }
 
 .feature-content h3 {
-
-  margin: 0 0 10px;
+  margin: 0;
 
   color: white;
 
-  font-size: 19px;
+  font-size: 8px;
+
+  line-height: 1.1;
+
+  white-space: nowrap;
 }
 
 .feature-content p {
-
-  margin: 0;
+  margin: 1px 0 0;
 
   color: #aeb7ca;
 
-  font-size: 13px;
+  font-size: 5px;
 
-  line-height: 1.6;
+  line-height: 1.1;
+
+  white-space: nowrap;
 }
 
 
-/* ARROW */
+/* =========================================
+   ARROW
+========================================= */
 
 .feature-arrow {
-
   position: absolute;
 
-  right: 20px;
-  bottom: 18px;
+  right: 5px;
+  top: 50%;
+
+  transform: translateY(-50%);
 
   color: #25d9ff;
 
-  font-size: 22px;
+  font-size: 9px;
 }
 
 
-/* SPECIAL CARDS */
+/* =========================================
+   SPECIAL CARDS
+========================================= */
 
 .diagnosis-card {
   border-color: rgba(0, 210, 255, 0.55);
@@ -157,7 +176,9 @@
 }
 
 
-/* TABLET */
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 1000px) {
 
@@ -168,12 +189,23 @@
 }
 
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 650px) {
 
   .feature-section {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  margin-top: 10px;
+  }
+
+  .feature-card {
+    min-height: 35px;
+    height: 35px;
+    min-width: 0;
+width: 100%;
   }
 
 }

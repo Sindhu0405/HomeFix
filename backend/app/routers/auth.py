@@ -1,7 +1,13 @@
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, EmailStr
-import random
-from datetime import datetime, timedelta
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+
+from ..database import get_db
+from ..models import User
+from ..schemas import (
+    RegisterRequest,
+    LoginRequest,
+    AuthResponse
+)
 
 
 router = APIRouter(
@@ -10,270 +16,99 @@ router = APIRouter(
 )
 
 
-# ==========================================
-# TEMPORARY OTP STORAGE
-# ==========================================
+# =========================
+# REGISTER
+# =========================
 
-otp_storage = {}
+@router.post("/register", response_model=AuthResponse)
+def register(
+    data: RegisterRequest,
+    db: Session = Depends(get_db)
+):
 
+    name = data.name.strip()
 
-# ==========================================
-# REQUEST MODEL
-# ==========================================
-
-class SendOTPRequest(BaseModel):
-
-    type: str
-
-    email: str | None = None
-
-    mobile: str | None = None
-
-    country_code: str | None = None
-
-
-class VerifyOTPRequest(BaseModel):
-
-    type: str
-
-    email: str | None = None
-
-    mobile: str | None = None
-
-    country_code: str | None = None
-
-    otp: str
-
-
-# ==========================================
-# SEND OTP
-# ==========================================
-
-@router.post("/send-otp")
-def send_otp(data: SendOTPRequest):
-
-    # --------------------------------------
-    # EMAIL
-    # --------------------------------------
-
-    if data.type == "email":
-
-        if not data.email:
-
-            raise HTTPException(
-                status_code=400,
-                detail="Email is required."
-            )
-
-        destination = data.email
-
-
-    # --------------------------------------
-    # MOBILE
-    # --------------------------------------
-
-    elif data.type == "mobile":
-
-        if not data.mobile:
-
-            raise HTTPException(
-                status_code=400,
-                detail="Mobile number is required."
-            )
-
-        if not data.country_code:
-
-            raise HTTPException(
-                status_code=400,
-                detail="Country code is required."
-            )
-
-        # India validation
-
-        if data.country_code == "+91":
-
-            if len(data.mobile) != 10:
-
-                raise HTTPException(
-                    status_code=400,
-                    detail="Indian mobile number must contain 10 digits."
-                )
-
-        destination = (
-            data.country_code +
-            data.mobile
-        )
-
-
-    else:
-
+    if not name:
         raise HTTPException(
             status_code=400,
-            detail="Invalid login type."
+            detail="Name is required."
         )
 
+    if not data.password:
+        raise HTTPException(
+            status_code=400,
+            detail="Password is required."
+        )
 
-    # ======================================
-    # GENERATE OTP
-    # ======================================
+    # Check if name already exists
+    existing_user = (
+        db.query(User)
+        .filter(User.name == name)
+        .first()
+    )
 
-    otp = str(
-        random.randint(100000, 999999)
+    if existing_user:
+        raise HTTPException(
+            status_code=400,
+            detail="This name is already registered."
+        )
+
+    user = User(
+        name=name,
+        password=data.password
+    )
+
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+
+    return AuthResponse(
+        success=True,
+        message="Account created successfully.",
+        user_id=user.id,
+        name=user.name
     )
 
 
-    # ======================================
-    # OTP EXPIRY
-    # ======================================
+# =========================
+# LOGIN
+# =========================
 
-    expires_at = (
-        datetime.utcnow()
-        + timedelta(minutes=5)
+@router.post("/login", response_model=AuthResponse)
+def login(
+    data: LoginRequest,
+    db: Session = Depends(get_db)
+):
+
+    name = data.name.strip()
+
+    if not name:
+        raise HTTPException(
+            status_code=400,
+            detail="Name is required."
+        )
+
+    user = (
+        db.query(User)
+        .filter(User.name == name)
+        .first()
     )
 
-
-    # ======================================
-    # SAVE OTP
-    # ======================================
-
-    otp_storage[destination] = {
-
-        "otp": otp,
-
-        "expires_at": expires_at
-
-    }
-
-
-    # ======================================
-    # DEMO OUTPUT
-    # ======================================
-
-    print("")
-    print("======================================")
-    print("        HOMEFIX OTP")
-    print("======================================")
-    print("Destination:", destination)
-    print("OTP:", otp)
-    print("Expires in: 5 minutes")
-    print("======================================")
-    print("")
-
-
-    return {
-
-        "success": True,
-
-        "message": "OTP generated successfully."
-
-    }
-
-
-# ==========================================
-# VERIFY OTP
-# ==========================================
-
-@router.post("/verify-otp")
-def verify_otp(data: VerifyOTPRequest):
-
-    # --------------------------------------
-    # FIND DESTINATION
-    # --------------------------------------
-
-    if data.type == "email":
-
-        if not data.email:
-
-            raise HTTPException(
-                status_code=400,
-                detail="Email is required."
-            )
-
-        destination = data.email
-
-
-    elif data.type == "mobile":
-
-        if not data.mobile:
-
-            raise HTTPException(
-                status_code=400,
-                detail="Mobile number is required."
-            )
-
-        if not data.country_code:
-
-            raise HTTPException(
-                status_code=400,
-                detail="Country code is required."
-            )
-
-        destination = (
-            data.country_code +
-            data.mobile
-        )
-
-
-    else:
-
+    if not user:
         raise HTTPException(
-            status_code=400,
-            detail="Invalid login type."
+            status_code=401,
+            detail="Account not found. Please create an account first."
         )
 
-
-    # ======================================
-    # CHECK OTP EXISTS
-    # ======================================
-
-    saved_otp = otp_storage.get(destination)
-
-
-    if not saved_otp:
-
+    if user.password != data.password:
         raise HTTPException(
-            status_code=400,
-            detail="OTP not found. Please request a new OTP."
+            status_code=401,
+            detail="Incorrect password."
         )
 
-
-    # ======================================
-    # CHECK EXPIRY
-    # ======================================
-
-    if datetime.utcnow() > saved_otp["expires_at"]:
-
-        del otp_storage[destination]
-
-        raise HTTPException(
-            status_code=400,
-            detail="OTP expired. Please request a new OTP."
-        )
-
-
-    # ======================================
-    # CHECK OTP
-    # ======================================
-
-    if data.otp != saved_otp["otp"]:
-
-        raise HTTPException(
-            status_code=400,
-            detail="Invalid OTP. Please try again."
-        )
-
-
-    # ======================================
-    # OTP SUCCESS
-    # ======================================
-
-    del otp_storage[destination]
-
-
-    return {
-
-        "success": True,
-
-        "message": "Login successful."
-
-    }
+    return AuthResponse(
+        success=True,
+        message="Login successful.",
+        user_id=user.id,
+        name=user.name
+    )

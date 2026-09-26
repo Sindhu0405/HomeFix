@@ -3,6 +3,7 @@ import axios from "axios";
 
 import HomePage from "./HomePage";
 import Login from "./Login";
+import Register from "./Register";
 
 import Diagnosis from "./components/Diagnosis";
 import DiagnosisResult from "./components/DiagnosisResult";
@@ -31,6 +32,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
+
   const [showProfile, setShowProfile] = useState(false);
 
 
@@ -42,12 +44,20 @@ function App() {
 
   const [selectedAppliance, setSelectedAppliance] = useState(null);
 
+
+  // ==========================================
+  // DIAGNOSIS
+  // ==========================================
+
   const [diagnosis, setDiagnosis] = useState(null);
-  const startNewDiagnosis = () => {
-  setDiagnosis(null);
-  setPage("diagnosis");
-};
+
   const [previousPage, setPreviousPage] = useState("dashboard");
+
+
+  const startNewDiagnosis = () => {
+    setDiagnosis(null);
+    setPage("diagnosis");
+  };
 
 
   // ==========================================
@@ -71,14 +81,11 @@ function App() {
 
   const navigate = (targetPage) => {
 
-    // If page needs login
     if (
       protectedPages.includes(targetPage) &&
       !isLoggedIn
     ) {
-
       setPage("login");
-
       return;
     }
 
@@ -170,6 +177,21 @@ function App() {
 
 
   // ==========================================
+  // REGISTER
+  // ==========================================
+
+  if (page === "register") {
+
+    return (
+      <Register
+        setPage={navigate}
+      />
+    );
+
+  }
+
+
+  // ==========================================
   // DASHBOARD
   // ==========================================
 
@@ -180,103 +202,137 @@ function App() {
       <div className="dashboard-page">
 
         <div className="dashboard-container">
+
+
           {/* ==========================================
-    PROFILE
-========================================== */}
+              PROFILE
+          ========================================== */}
 
-<div className="profile-area">
+          <div className="profile-area">
 
-  <button
-    className="profile-button"
-    onClick={() =>
-      setShowProfile(!showProfile)
-    }
-    title="Profile"
-  >
-    👤
-  </button>
+            <button
+              className="profile-button"
 
+              onClick={() =>
+                setShowProfile(!showProfile)
+              }
 
-  {showProfile && (
-
-    <div className="profile-popup">
-
-      <h3>
-        👤 User Profile
-      </h3>
-
-      <div className="profile-info">
-
-        {localStorage.getItem("userEmail") && (
-          <p>
-            📧 {localStorage.getItem("userEmail")}
-          </p>
-        )}
-
-        {localStorage.getItem("userMobile") && (
-          <p>
-            📱 {localStorage.getItem("userMobile")}
-          </p>
-        )}
-
-      </div>
+              title="Profile"
+            >
+              👤
+            </button>
 
 
-      <button
-        className="profile-logout"
-        onClick={() => {
+            {showProfile && (
 
-          localStorage.removeItem("isLoggedIn");
-          localStorage.removeItem("loginType");
-          localStorage.removeItem("userEmail");
-          localStorage.removeItem("userMobile");
+              <div className="profile-popup">
 
-          setIsLoggedIn(false);
-          setShowProfile(false);
-          setPage("home");
+                <h3>
+                  👤 User Profile
+                </h3>
 
-        }}
-      >
-        🚪 Logout
-      </button>
 
-    </div>
+                <div className="profile-info">
 
-  )}
+                  <p>
+                    👤 {localStorage.getItem("userName") || "User"}
+                  </p>
 
-</div>
+                </div>
+
+
+                <button
+                  className="profile-logout"
+
+                  onClick={() => {
+
+                    localStorage.removeItem(
+                      "isLoggedIn"
+                    );
+
+                    localStorage.removeItem(
+                      "userName"
+                    );
+
+                    localStorage.removeItem(
+                      "loginType"
+                    );
+
+                    localStorage.removeItem(
+                      "userEmail"
+                    );
+
+                    localStorage.removeItem(
+                      "userMobile"
+                    );
+
+                    setIsLoggedIn(false);
+
+                    setShowProfile(false);
+
+                    setPage("home");
+
+                  }}
+                >
+                  🚪 Logout
+                </button>
+
+              </div>
+
+            )}
+
+          </div>
+
 
           <span className="dashboard-badge">
             HOMEFIX SMART CARE
           </span>
 
+
           <h1>
+
             Your Appliances.
+
             <br />
-            <span>Smarter Care.</span>
+
+            <span>
+              Smarter Care.
+            </span>
+
           </h1>
 
 
           <p className="dashboard-intro">
+
             Manage your appliances and get smart
             assistance whenever you need it.
+
           </p>
 
 
-          {/* SMART DIAGNOSIS */}
+          {/* ==========================================
+              SMART DIAGNOSIS
+          ========================================== */}
 
-         <button
-  className="dashboard-main-card"
-  onClick={() => {setPreviousPage("dashboard");
-    navigate("diagnosis");
-  }}
->
+          <button
+            className="dashboard-main-card"
+
+            onClick={() => {
+
+              setPreviousPage("dashboard");
+
+              navigate("diagnosis");
+
+            }}
+          >
 
             <span className="dashboard-card-icon">
               🩺
             </span>
 
+
             <span>
+
               <strong>
                 Smart Diagnosis
               </strong>
@@ -284,7 +340,9 @@ function App() {
               <small>
                 Find appliance problems quickly
               </small>
+
             </span>
+
 
             <span className="dashboard-arrow">
               →
@@ -293,9 +351,12 @@ function App() {
           </button>
 
 
-          {/* SECOND ROW */}
+          {/* ==========================================
+              SECOND ROW
+          ========================================== */}
 
           <div className="dashboard-grid">
+
 
             <button
               onClick={() =>
@@ -303,7 +364,9 @@ function App() {
               }
             >
 
-              <span>🛡️</span>
+              <span>
+                🛡️
+              </span>
 
               <strong>
                 Safe & Secure
@@ -322,7 +385,9 @@ function App() {
               }
             >
 
-              <span>📋</span>
+              <span>
+                📋
+              </span>
 
               <strong>
                 Track History
@@ -334,12 +399,16 @@ function App() {
 
             </button>
 
+
           </div>
 
 
-          {/* THIRD ROW */}
+          {/* ==========================================
+              THIRD ROW
+          ========================================== */}
 
           <div className="dashboard-grid">
+
 
             <button
               onClick={() =>
@@ -347,7 +416,9 @@ function App() {
               }
             >
 
-              <span>📦</span>
+              <span>
+                📦
+              </span>
 
               <strong>
                 My Appliances
@@ -366,7 +437,9 @@ function App() {
               }
             >
 
-              <span>➕</span>
+              <span>
+                ➕
+              </span>
 
               <strong>
                 Add Appliance
@@ -378,25 +451,35 @@ function App() {
 
             </button>
 
+
           </div>
 
 
-          {/* CHATBOT */}
+          {/* ==========================================
+              CHATBOT
+          ========================================== */}
 
           <button
             className="dashboard-chatbot"
+
             onClick={() =>
               navigate("chatbot")
             }
+
             title="HomeFix Assistant"
           >
             💬
           </button>
+
         </div>
+
       </div>
+
     );
 
   }
+
+
   // ==========================================
   // MY APPLIANCES
   // ==========================================
@@ -409,13 +492,16 @@ function App() {
 
         <div className="appliances-container">
 
+
           <span className="appliances-badge">
             HOMEFIX SMART CARE
           </span>
 
+
           <h1>
             My <span>Appliances</span>
           </h1>
+
 
           <p className="appliances-intro">
             Select an appliance to diagnose or manage it.
@@ -426,19 +512,21 @@ function App() {
 
           <button
             className="appliances-back-btn"
+
             onClick={() =>
               navigate("dashboard")
             }
           >
-
             ← Back to Dashboard
-
           </button>
 
 
-          {/* APPLIANCES */}
+          {/* ==========================================
+              APPLIANCES
+          ========================================== */}
 
           <div className="appliances-grid">
+
 
             {appliances.length === 0 ? (
 
@@ -448,13 +536,16 @@ function App() {
                   📦
                 </div>
 
+
                 <h3>
                   No Appliances Yet
                 </h3>
 
+
                 <p>
                   Add your first appliance to get started.
                 </p>
+
 
                 <button
                   onClick={() =>
@@ -472,6 +563,7 @@ function App() {
                 (appliance, index) => (
 
                   <div
+
                     key={
                       appliance.id ||
                       `local-${index}`
@@ -484,19 +576,27 @@ function App() {
                       setSelectedAppliance(
                         appliance
                       );
-                      setPreviousPage("appliances");
+
+                      setPreviousPage(
+                        "appliances"
+                      );
+
                       navigate("diagnosis");
 
                     }}
+
                   >
+
 
                     <div className="appliance-card-icon">
 
                       {getApplianceIcon(
-                        appliance.type
+                        appliance.type ||
+                        appliance.category
                       )}
 
                     </div>
+
 
                     <div className="appliance-card-info">
 
@@ -504,49 +604,63 @@ function App() {
                         {appliance.name}
                       </h3>
 
+
                       <span>
-                        {appliance.type}
+                        {
+                          appliance.type ||
+                          appliance.category
+                        }
                       </span>
 
+
                       {appliance.brand && (
+
                         <small>
                           {appliance.brand}
                         </small>
+
                       )}
 
+
                       {appliance.model && (
+
                         <small>
                           Model: {appliance.model}
                         </small>
+
                       )}
 
                     </div>
+
 
                     <div className="appliance-card-arrow">
                       →
                     </div>
 
+
                   </div>
 
                 )
+
               )
 
             )}
 
           </div>
 
+
           {/* ADD NEW */}
 
           <button
             className="add-new-appliance-btn"
+
             onClick={() =>
               navigate("add")
             }
           >
-
             ＋ Add New Appliance
-
           </button>
+
 
         </div>
 
@@ -555,6 +669,7 @@ function App() {
     );
 
   }
+
 
   // ==========================================
   // ADD APPLIANCE
@@ -570,6 +685,7 @@ function App() {
 
   }
 
+
   // ==========================================
   // SMART DIAGNOSIS
   // ==========================================
@@ -579,15 +695,27 @@ function App() {
     return (
 
       <Diagnosis
+
         setPage={setPage}
-        selectedAppliance={selectedAppliance}
-        setDiagnosis={setDiagnosis}
-         previousSymptom={diagnosis?.symptom || ""}
+
+        selectedAppliance={
+          selectedAppliance
+        }
+
+        setDiagnosis={
+          setDiagnosis
+        }
+
+        previousSymptom={
+          diagnosis?.symptom || ""
+        }
+
       />
 
     );
 
   }
+
 
   // ==========================================
   // DIAGNOSIS RESULT
@@ -597,14 +725,30 @@ function App() {
 
     return (
 
-    <DiagnosisResult
-  result={diagnosis}
-  setPage={setPage}
-  previousPage={previousPage}
-  startNewDiagnosis={startNewDiagnosis}
-/>
+      <DiagnosisResult
+
+        result={
+          diagnosis
+        }
+
+        setPage={
+          setPage
+        }
+
+        previousPage={
+          previousPage
+        }
+
+        startNewDiagnosis={
+          startNewDiagnosis
+        }
+
+      />
+
     );
+
   }
+
 
   // ==========================================
   // SAFE & SECURE
@@ -613,88 +757,100 @@ function App() {
   if (page === "secure") {
 
     return (
+
       <SafeSecure
         setPage={navigate}
       />
+
     );
 
   }
+
 
   // ==========================================
   // TRACK HISTORY
   // ==========================================
 
- if (page === "history") {
+  if (page === "history") {
 
-  return (
+    return (
 
-    <div className="history-page">
+      <div className="history-page">
 
-      <div className="history-container">
-
-        <span className="history-badge">
-          HOMEFIX SMART CARE
-        </span>
-
-        <div className="history-icon">
-          📋
-        </div>
-
-        <h1>
-          Track <span>History</span>
-        </h1>
-
-        <p className="history-intro">
-          Keep track of your appliance diagnosis and repair activity.
-        </p>
+        <div className="history-container">
 
 
-        {/* EMPTY HISTORY */}
+          <span className="history-badge">
+            HOMEFIX SMART CARE
+          </span>
 
-        <div className="history-empty">
 
-          <div className="history-empty-icon">
-            📝
+          <div className="history-icon">
+            📋
           </div>
 
-          <h3>
-            No Diagnosis History Yet
-          </h3>
 
-          <p>
-            Your diagnosis history will appear here
-            after you diagnose an appliance.
+          <h1>
+            Track <span>History</span>
+          </h1>
+
+
+          <p className="history-intro">
+            Keep track of your appliance diagnosis and repair activity.
           </p>
 
+
+          {/* EMPTY HISTORY */}
+
+          <div className="history-empty">
+
+            <div className="history-empty-icon">
+              📝
+            </div>
+
+
+            <h3>
+              No Diagnosis History Yet
+            </h3>
+
+
+            <p>
+              Your diagnosis history will appear here
+              after you diagnose an appliance.
+            </p>
+
+
+            <button
+              onClick={() =>
+                navigate("appliances")
+              }
+            >
+              📦 View My Appliances
+            </button>
+
+          </div>
+
+
+          {/* BACK */}
+
           <button
+            className="history-back-btn"
+
             onClick={() =>
-              navigate("appliances")
+              navigate("dashboard")
             }
           >
-            📦 View My Appliances
+            ← Back to Dashboard
           </button>
 
+
         </div>
-
-
-        {/* BACK */}
-
-        <button
-          className="history-back-btn"
-          onClick={() =>
-            navigate("dashboard")
-          }
-        >
-          ← Back to Dashboard
-        </button>
 
       </div>
 
-    </div>
+    );
 
-  );
-
-}
+  }
 
 
   // ==========================================
@@ -704,9 +860,11 @@ function App() {
   if (page === "chatbot") {
 
     return (
+
       <Chatbot
         setPage={navigate}
       />
+
     );
 
   }
@@ -717,9 +875,11 @@ function App() {
   // ==========================================
 
   return (
+
     <HomePage
       setPage={navigate}
     />
+
   );
 
 }

@@ -1,6 +1,10 @@
 from pydantic import BaseModel, ConfigDict
 
 
+# =========================
+# Appliance Schemas
+# =========================
+
 class ApplianceCreate(BaseModel):
     name: str
     category: str
@@ -13,8 +17,13 @@ class ApplianceCreate(BaseModel):
 
 class ApplianceOut(ApplianceCreate):
     id: int
+
     model_config = ConfigDict(from_attributes=True)
 
+
+# =========================
+# Diagnosis Schemas
+# =========================
 
 class DiagnosisRequest(BaseModel):
     category: str
@@ -28,3 +37,24 @@ class DiagnosisResponse(BaseModel):
     safe_checks: list[str]
     estimated_repair_range: str
     recommendation: str
+
+
+# =========================
+# Authentication Schemas
+# =========================
+
+class RegisterRequest(BaseModel):
+    name: str
+    password: str
+
+
+class LoginRequest(BaseModel):
+    name: str
+    password: str
+
+
+class AuthResponse(BaseModel):
+    success: bool
+    message: str
+    user_id: int | None = None
+    name: str | None = None

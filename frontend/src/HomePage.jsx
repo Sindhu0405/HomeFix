@@ -59,15 +59,7 @@ function HomePage({ setPage }) {
               </button>
 
 
-              {/* CHATBOT */}
-
-              <button
-                className="welcome-chatbot"
-                onClick={() => setPage("chatbot")}
-                title="HomeFix Chatbot"
-              >
-                🤖
-              </button>
+             
 
             </div>
 
