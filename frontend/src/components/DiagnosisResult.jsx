@@ -125,8 +125,18 @@ function DiagnosisResult({ result, setPage, previousPage, startNewDiagnosis }) {
           </div>
 
         </div>
-
-
+        {/* FIND NEARBY SERVICE SHOPS */}
+<button
+  className="find-shops-btn"
+  onClick={() => {
+    window.open(
+      "https://www.google.com/maps/search/appliance+repair+shops+near+me",
+      "_blank"
+    );
+  }}
+>
+  📍 Find Nearby Service Shops
+</button>
         {/* ACTION BUTTONS */}
         <div className="result-buttons">
 
