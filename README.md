@@ -1,58 +1,119 @@
-# HomeFix – Smart Appliance Care & Diagnosis System
+# 🏠 HomeFix – Smart Appliance Care & Diagnosis
 
-HomeFix is a full-stack web application designed to help users manage their home appliances and receive rule-based troubleshooting and repair guidance based on reported appliance problems.
+HomeFix is a full-stack web application designed to help users manage their household appliances, perform basic appliance diagnosis, estimate repair costs, and find nearby appliance service shops.
+
+The application combines a React frontend with a FastAPI backend and a database to provide a simple and user-friendly appliance management experience.
+
+---
 
 ## 🚀 Features
 
-- User registration and login
-- User authentication
-- Add and manage home appliances
-- View appliance details
-- Select an appliance for diagnosis
-- Report appliance problems
-- Rule-based appliance diagnosis
-- Troubleshooting and repair guidance
-- Diagnosis results
-- Diagnosis history
-- HomeFix assistant/chatbot interface
-- REST API based frontend-backend communication
+### 🔐 User Authentication
+- User registration with name and password
+- User login
+- Password visibility toggle
+- User profile display
+- Logout functionality
 
-## 🛠️ Tech Stack
+### 🏠 Appliance Management
+- Add household appliances
+- View registered appliances
+- Store appliance details such as:
+  - Appliance name
+  - Category
+  - Brand
+  - Model
+  - Purchase year
+  - Warranty information
+  - Notes
+
+### 🩺 Smart Diagnosis
+- Select an appliance category
+- Enter the appliance symptom/problem
+- Generate possible causes
+- Display safe troubleshooting checks
+- Provide an estimated repair cost range
+- Show repair recommendations
+
+### 📍 Nearby Service Shops
+- Find nearby appliance repair shops
+- Opens Google Maps with appliance repair shop search
+- Helps users locate local repair services
+
+### 💬 HomeFix Assistant
+- Interactive chatbot interface
+- Personalized greeting using the logged-in user's name
+- Provides a simple interface for appliance-related assistance
+
+### 🎨 Modern UI
+- Responsive React interface
+- Dark/glassmorphism-inspired design
+- Interactive cards and buttons
+- Responsive layout for different screen sizes
+
+---
+
+## 🛠️ Technologies Used
 
 ### Frontend
-- React
+- React.js
 - Vite
 - JavaScript
+- HTML5
+- CSS3
 - Axios
-- HTML
-- CSS
 
 ### Backend
 - Python
 - FastAPI
+- SQLAlchemy
 - Pydantic
-- SQLAlchemy ORM
 - Uvicorn
-- REST APIs
 
 ### Database
-- SQLite
-- SQLAlchemy
+- SQLite – local development
+- PostgreSQL – deployment configuration
 
-### Development Tools
+### Tools
+- Visual Studio Code
 - Git
 - GitHub
-- VS Code
+- npm
+- Render
+- Google Maps
 
-## 🏗️ System Architecture
+---
+
+## 🏗️ Project Architecture
 
 ```text
-React Frontend
-      ↓
-    Axios
-      ↓
-FastAPI REST API
-      ↓
-SQLAlchemy ORM
-      ↓
-SQLite Database
+HomeFix
+│
+├── backend
+│   ├── app
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   │
+│   │   ├── routers
+│   │   │   ├── auth.py
+│   │   │   ├── appliances.py
+│   │   │   └── diagnosis.py
+│   │   │
+│   │   └── services
+│   │
+│   ├── requirements.txt
+│   └── homefix.db
+│
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
